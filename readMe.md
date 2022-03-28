@@ -1,132 +1,34 @@
-Advanced JavaScript Drills
- 
+# Context Clues
+Covalence
 
-Objective
-The objective of this lab assignment is to practice using advanced JavaScript that were explored in lecture.
+## Info
+* You and your friends were attending a grand dinner party when tragedy struck
+* Accusations are running rampant to determine who committed the crime
+* You will be building a webpage that will display 100 accusations on the screen
+* When an accusation is clicked, an alert will appear that shows the full text of the accusation
+* Knowledge of closure and the modulus operator will be useful in this lab
+* To force your hand at trying closure, you must not use let/const in this lab. Only use var.
 
- 
+## Getting Started
+* Create an index.html, script.js, and a css file for styling
 
-Hoisting and Functions
-Set the word name equal to your name
-
-Use the var keyword to define name as a variable
-
-Log the value of name to the console
-
-name = 'Covalence';
-var name;
-console.log(name);
-What do you expect to be logged?
-
-Open your developer tools and view what is printed in the console. You'll see that the current name was printed.
-This is the effect of hoisting. When the browser interprets our JavaScript code it hoisted the declaration for the variable name and then assigned it to the current name so when name was logged, it is defined.
-
-Change the var keyword to let
-
-Save and refresh the browser
-
-There is now a ReferenceError and name is no longer defined!
-Only the declarations using the var keyword are hoisted
-Change the let keyword back to var and create a function named setName
-
-Inside the setName function write the following code and then call it BEFORE the function is declared
-
-setName();
-function setName() {
-    var name = 'Covalence';
-    console.log(name);
-}
-What do you expect to be logged in the console?
-
-Save and refresh the browser
-
-The value logged is the value for name.
-We called the function before it was declared and when it was interpreted, the function was hoisted above the function call so we were successfully able to log the value of name.
-Create a new function declaration that will accept two parameters. The value of the parameters will be used to determined the average and the result will be returned.
-
-Add console logs to monitor each stage. Your code should look similar to:
-
-console.log('some text');
-let avg = findAvg(2, 2);
-console.log('some text', avg);
-function findAvg(a, b) {
-    console.log('some text');
-    var answer = (a + b) / 2;
-    return answer;
-}
-In what order will the logs be printed in the console?
-
- 
-
-Now that we have exercised hoisting, let's practice scoping.
-Create an array called fruits
-
-The fruits array should have three fruits
-
-Declare a global variable named favFruit using the let keyword.
-
-Create a function declaration that will print the first fruit in the fruits array
-
-Inside this function create a new variable and set it equal to your favorite fruit
-
-Call the function
-
-Save and refresh the browser. You should now see the first fruit printed in the console
-
-Declare another function that will print your favorite fruit.
-
-Call the function
-Your code should look similar to:
-
-let fruits = ['apple', 'tomato', 'banana'];
-let favFruit;
-function printFruits() {
-    favFruit = fruits[2];
-    console.log(fruits[0]);
-}
-
-function printFavFruit() {
-    console.log(favFruit);
-}
-
-printFruits();
-printFavFruit();
-Save and refresh the browser.
-Why was the printFavFruit function able to log favFruit?
-
-Remove the declaration of favFruit in the global scope
-
-Declare favFruit using the let keyword in the printFruits function
-
-let favFruit = fruits[2];
-Save and refresh the browser. favFruit is no longer in the global scope so printFavFruit() does not have access to the favFruit variable and is now undefined.
-
-Nest the printFavFruit function inside of the printFruits function.
-
-function printFruits() {
-    let favFruit = fruits[2];
-    console.log(fruits[0]);
-
-    function printFavFruit() {
-        console.log(favFruit);
-    }
-}
-
-printFruits();
-// printFavFruit(); // can no longer call this here
-Call the printFavFruit function inside printFruits function
-Save and refresh the browser. favFruit is now logged because the printFavFruit has access to variables in its parent function.
-Create a new variable named leastFav using the let keyword, declare it in the scope of the printFavFruit function.
-Assign the value of your least favorite fruit, either from the array or an independent string.
-Log leastFav to the console after the printFavFruit function is declared
-Save and refresh the browser. leastFav log should throw an error because the parent function does not have access to variables declared within the nested function.
-Create a new function and name the function whatever you would like, make sure to create this using the function keyword, have this function console.log “Hello, “ and then your name. Call this function BEFORE the function body. Example:
-someFunc();
-function someFunc() null
-*You’ll notice the function runs no problem, because the function is hoisted*
-Create a new function and name the function using a function expression (create it using let, not var). Have this function have an alert appear with some text of your choosing.
-Call the function before it is declared as an expression, what happens? Because of hoisting and the use the ES6 an error may occur. Adjust the code to allow the function to run.
- 
-
-Submission
-Commit and your changes and push to your GitHub profile.
+## Objectives
+* Again, DO NOT use let/const in this lab. Only use var, even in loop declarations. This is to force a situation in which closure is required.
+* When the page first loads, insert 100 h3 elements onto the page
+    * The h3 elements should simply say Accusation 1, Accusation 2, Accusation 3, ... Accusation 100
+    * Clicking on an h3 element should display an alert that says a statement in the following format:
+```
+Accusation i: I accuse FRIEND_NAME, with the WEAPON_NAME in the LOCATION_NAME!
+ex: Accusation 7: I accuse Jane, with the paper clip in the copy room!
+```
+* Due to the way scoping works when using var, you will need to use closure to solve this problem
+    * You need to create a function that returns a function that specializes in displaying an alert for a particular loop iteration
+    * That returned function can be set as the click listener for the h3
+* You need an array of 5 friend names
+* You need an array of 10 location names
+* You need an array of 20 weapon/object names (feel free to be silly/absurd)
+* You will use the value of i in the loop to determine which of the above array items to use
+    * Make sure you only select valid array indexes
+    * Modulus is your friend
+    * ex: 10 mod 10 is 0, 11 mod 10 is 1, 12 mod 10 is 2, ...
+* You only need to use one loop for this assignment
