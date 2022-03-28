@@ -32,4 +32,39 @@ function findAvg(a,b){
     var answer = (a+b)/2;
     return answer;
 }
+
+console.log('scoping exercise');
+
+console.log('steps 10-20');
+
+let fruits = ['apple','tomato', 'bannana'];
+//let favFruit;
+
+function printFruits(){
+    let favFruit = fruits[2];
+    //console.log(fruits[0]);
+    
+    function printFavFruit(){
+     console.log(favFruit);
+    //console.log(favFruit);
+    let leastFav = fruits[1];
+    console.log(leastFav);
+}
+}
+printFruits();
+printFavFruit(); //can't call this here
+
+//comes undefined because it is only specific to the function after 
+//specifying it within the function instead of global
 */
+
+
+newFunc();
+function newFunc(){
+    console.log('hello');
+}
+
+let alertFunc = function sayYO(){
+    alert('yo');
+}
+alertFunc();
